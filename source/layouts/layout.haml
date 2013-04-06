@@ -10,7 +10,8 @@
     %title= data.page.title || "The Middleman"
     
     = stylesheet_link_tag "normalize", "all"
+    %script{type: "text/javascript", src: "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js" }
     = javascript_include_tag  "all"
   
   %body
-    = yield %>
+    = yield
