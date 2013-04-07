@@ -1,5 +1,7 @@
 ---
 title: Angularjs example
 ---
-
-%p Nothing here {{'yes' + '!'}}
+%ul
+  %li(ng-repeat="phone in phones")
+    %span {{phone.name}}
+    %p {{phone.snippet}}
