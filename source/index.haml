@@ -1,7 +1,7 @@
 ---
 title: Angularjs example
 ---
-%ul
-  %li(ng-repeat="phone in phones")
-    %span {{phone.name}}
-    %p {{phone.snippet}}
+%ul#posts
+  %li(ng-repeat= "post in posts")
+    %span {{post.title}}
+    %p {{post.content}}

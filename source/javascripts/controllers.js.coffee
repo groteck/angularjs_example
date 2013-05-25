@@ -1,14 +1,9 @@
 angular.module('angularExample', [])
 
-window.PhoneListCtrl = ($scope) ->
-	$scope.phones = [
-		{
-			name: "Nexus S"
-			snippet: "Fast just got faster with Nexus S."
-		}
-		{
-			name: "Motorola XOOM™ with Wi-Fi"
-			snippet: "The Next, Next Generation tablet."
-		}
-	]
+window.PostListController = ($scope, $http) ->
+	url="http://blog-test-angularjs.herokuapp.com/posts.json"
+	
+	$http.get(url).success (json) ->
+		$scope.posts = json
+	
 angular.bootstrap document, ['angularExample']
