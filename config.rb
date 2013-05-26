@@ -1,3 +1,4 @@
+require 'middleman-gh-pages'
 ###
 # Compass
 ###
