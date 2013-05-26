@@ -1,9 +1,18 @@
-angular.module('angularExample', [])
+blog = angular.module('blog', ['ngResource'])
 
-window.PostListController = ($scope, $http) ->
+blog.controller('PostsCtrl', ['$scope', 'Post', ($scope, Post) ->
+	$scope.posts = Post.query()
+
+	$scope.create = ->
+		Post.save $scope.newPost, ((resource) ->
+			$scope.posts.push resource
+			$scope.newPost = {}
+		), (response) ->
+			console.log "Error: " + response.status
+
+])
+
+blog.factory('Post', ['$resource', ($resource) ->
 	url="http://blog-test-angularjs.herokuapp.com/posts.json"
-	
-	$http.get(url).success (json) ->
-		$scope.posts = json
-	
-angular.bootstrap document, ['angularExample']
+	$resource(url)
+])

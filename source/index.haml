@@ -1,8 +1,5 @@
----
-title: Angularjs example
----
 !!!5
-%html(ng-app)
+%html(ng-app='blog')
   %head
     <meta charset="utf-8">
     
@@ -10,13 +7,22 @@ title: Angularjs example
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     
     <!-- Use title if it's in the page YAML frontmatter -->
-    %title= data.page.title
+    %title Angularjs blog example
     
     = stylesheet_link_tag "normalize", "all"
     = javascript_include_tag  "all"
   
-  %body(ng-controller="PostListController")
+  %body(ng-controller="PostsCtrl")
+    %form(ng-submit="create()")
+      %ul#fields
+        %li.field
+          %input#post-title{placeholder: "Post title", type: "text"}(ng-model="newPost.title")
+        %li.field
+          %textarea#post-body{placeholder: "Post content"}(ng-model="newPost.content")
+        %li.field
+          %input{type: "submit"}
+
     %ul#posts
-      %li(ng-repeat= "post in posts")
-        %span {{post.title}}
+      %li.post(ng-repeat= "post in posts")
+        %h2 {{post.title}}
         %p {{post.content}}
